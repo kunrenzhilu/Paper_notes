@@ -8,3 +8,10 @@ This paper basically introduce the semantic concept and the concept of plausible
 5. Pertubation is introduced in this process so as to add noise, which is pretty ad-hoc. However, the garantee of privacy eventually comes from the privacy test. Two test is conducted,
 	5.1 Test whether one can find from the database a geo-similar enough record, if is, abort this fake trace. 
 	5.2 Test whether the trace is plausibly deniable, i.e whether k other seeds (the original trace from the database) is equally likely to generate the trace, if not, abort this fake trace. 
+
+However, several questions needed to be considered:
+
+1. What's the ratio of synthetic data/true data, or eqivalently, the measure of the information loss of synthetic data 
+2. When trace data is sparce, how their method deal with it.
+3. How to measure the utility retained?
+4. For LBS application, if the user's movement pattern is not common, how does to find a trace which is semantically similar?
