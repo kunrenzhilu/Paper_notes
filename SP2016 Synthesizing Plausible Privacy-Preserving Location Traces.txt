@@ -1,1 +1,10 @@
-This paper
+This paper basically introduce the semantic concept and the concept of plausible denialbility into generating trajectory data. From  a high level, the idea is 
+1. Compute the semantic similarity of different locations from different real pair of traces.
+2. According to the semantic similarity, forms a Graph G(E,V), where E is the similarity between these two locations and the V is the locations. G is a indirected graph.
+3. Conduct a graph clustering algorithm from this graph, which is basically kmean. Figure out which locations are semantically similar so as to belong to the same cluster. 
+4. Generate synthetic data point of the traces. Given a trace u, the algorithms replace the location point of the trace with points that are in the same cluster. The process is a HMM decoding process. 
+	4.1 Suppose location is denoted by li, semantic is denoted by ci. Given real trace of u, l1-l2-l3, abstract to the semantic space, i.e c2-c5-c3;
+	4.2 Model the synthetic location as the hidden state in HMM, and the class as the model observations. The hidden transition function is given by the aggregated mobile pattern from the data <p(/bar),pi(/bar)>. Then use Viterbi algorithm to find the most possible hidden sate (ie, the fake trace) according to the given observation.
+5. Pertubation is introduced in this process so as to add noise, which is pretty ad-hoc. However, the garantee of privacy eventually comes from the privacy test. Two test is conducted,
+	5.1 Test whether one can find from the database a geo-similar enough record, if is, abort this fake trace. 
+	5.2 Test whether the trace is plausibly deniable, i.e whether k other seeds (the original trace from the database) is equally likely to generate the trace, if not, abort this fake trace. 
